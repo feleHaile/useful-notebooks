@@ -1,0 +1,547 @@
+#################################
+    #####    Pankaj    #####
+#################################
+
+#alias work="cd /home/proj/code/mybranch"
+alias wrf="cd /home/jayan/model/WRF3.8/"
+alias project="cd /home/jayan/model/project"
+alias c='clear'
+alias matlab='sudo /home/pankaj/.local/MATLAB/R2016a/bin/matlab -nosplash'
+alias book2='con2; jupyter notebook'
+alias book3='con3; jupyter notebook'
+# Alias quotidiens
+alias ssudo='sudo -sE'
+alias ss='ssudo'
+alias sudo='sudo -E'
+alias get="sudo apt-get install -y"
+alias remove="sudo apt-get remove"
+# reset bashrc
+alias src='source ~/.bashrc'
+alias rc='vi ~/.bashrc'
+alias al='vi ~/.bash_aliases'
+alias lssh='cat ~/.ssh/config'
+
+# my own
+alias con3='export PATH="/home/pankaj/.local/Anaconda3/bin:$PATH"'
+alias con2='export PATH="/home/pankaj/.local/Anaconda2/bin:$PATH"'
+alias proxyon='export all_proxy=http://172.16.2.30:8080'
+alias proxyoff='export all_proxy='
+alias remote2='con2; jupyter notebook --no-browser --port=8889'
+alias remote3='con3; jupyter notebook --no-browser --port=8889'
+alias serve='ssh -N -f -L localhost:8888:localhost:8889 server'
+alias pyget='conda install -c conda-forge'
+alias repo='sudo mknod -m 666 /dev/fuse c 10 229; sshfs jayan@10.57.12.190:/home/jayan/repo ~/Desktop/repo'
+alias urepo='fusermount -u ~/Desktop/repo'
+
+ # Alias some common chmod amounts
+alias mx='chmod a+x'
+alias 000='chmod -R 000'
+alias 644='chmod -R 644'
+alias 666='chmod -R 666'
+alias 755='chmod -R 755'
+alias 777='chmod -R 777'
+
+# make directory and cd into that
+mcd() { mkdir -p "$1"; cd "$1";} 
+
+#  make a backup of a file: backup [file] will create [file].bak in the same directory.
+backup() { cp "$1"{,.bak};}
+
+# ls
+alias ls='ls --color=auto'
+alias lh='ls -a|grep "^\."' #  hidden only 
+#alias ll='ls -lAh'
+alias lx='ls -lXB'          #  Sort by extension.
+alias lk='ls -lSrh'         #  Sort by size, biggest last.
+alias lt='ls -ltr'          #  Sort by date, most recent last.
+alias lc='ls -ltcr'         #  Sort by/show change time,most recent last.
+alias lu='ls -ltur'         #  Sort by/show access time,most recent last.
+
+alias ll="ls -lv --group-directories-first"
+alias lm='ll |more'         #  Pipe through 'more'
+alias lr='ll -R'            #  Recursive ls.
+alias la='ll -A'            #  Show hidden files.
+alias tree='tree -Csuh'     #  Nice alternative to 'recursive ls' ...
+
+
+
+#  grep
+alias grep='grep --color=auto'
+alias pg='ps aux | grep'
+
+#logs
+alias weblogtail="tail -F /var/log/apache2/*"        # watch web server log
+alias logs="tail -F /var/log/*.log /var/log/*/*.log /var/log/syslog"  # watch various current logs
+alias mem='egrep "Mem|Cache|Swap" /proc/meminfo'
+
+## pass options to free ##
+alias meminfo='free -m -l -t'
+ 
+## get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+ 
+## get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+ 
+## Get server cpu info ##
+alias cpuinfo='lscpu'
+ 
+## older system use /proc/cpuinfo ##
+##alias cpuinfo='less /proc/cpuinfo' ##
+ 
+## get GPU ram on desktop / laptop##
+alias gpumeminfo='grep -i --color memory /var/log/Xorg.0.log'
+
+
+# reboot / halt / poweroff
+alias reboot='sudo /sbin/reboot'
+alias poweroff='sudo /sbin/poweroff'
+alias halt='sudo /sbin/halt'
+alias shutdown='sudo /sbin/shutdown'
+
+# navigation
+alias cd..='cd ..'
+alias ..='cd ..'
+alias ...='cd ../../'
+alias ....='cd ../../..'
+
+#command history
+alias h='history'
+alias path='echo -e ${PATH//:/\\n}'
+alias j='jobs -l'
+
+# Alias de sécurité
+alias rm='rm --preserve-root'
+
+alias duh="du -h "                       # use human-readable sizes
+alias dud="du --max-depth=1 -h "         # human, one-deep (often more readable)
+alias lslast="ls -lrt "                  # show last modified last
+alias lsd='find * -prune -type d -ls'    # 'list directories under curdir'
+alias hexdump='od -t x1z'                # "show hex representation, of single bytes at a time, show text alongside"
+alias lesscol="less -R"                  # less that allows color (...control codes)
+
+# change default verbosity
+alias df="df -hT "                       # use human-readable sizes and show filesystem type
+alias bzip2="bzip2 -p "                  # always print progress when bzipping
+alias pstree='pstree -pu '               # always show pid, and show usernames where UID changes
+alias psme='ps -fHu $USER'
+
+# change default behaviour:
+alias bc="bc -lq "                       # bc always does float calculations
+
+# Récupérer son IP externe
+alias myip='wget -qO- http://icanhazip.com'
+
+# Afficher l'heure actuelle
+alias now='date +"%T"'
+
+# Sortie de mount plus lisible
+alias mount='mount | column -t'
+
+# Affiche le ports ouverts
+alias ports='netstat -tulanp'
+
+# Show which applications are connecting to the network.
+alias listen="lsof -P -i -n" 
+
+# Mise à jour toute en un
+alias update='sudo apt update && sudo apt dist-upgrade'
+alias safe-update='sudo apt update && sudo apt upgrade'
+
+# Toujours permettre de continuer un téléchargement wget interrompu
+alias wget='wget -c'
+alias dlpage="wget -r -l 1 "             # save page and direct links
+
+
+# Copie le contenu d'un fichier dans le presse-papier
+alias copy='xsel -i --clipboard <'
+
+# Ouvrir l'explorateur dans le dossier courant
+alias nemo='nemo .'
+alias nautilus='nautilus .'
+alias thunar='thunar .'
+alias caja='caja .'
+
+# IPython Notebook
+alias book='jupyter notebook'
+
+# Met à jour tous les paquets pip
+alias pipupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+
+#functions
+
+function extract()      # Handy Extract Program
+{
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xvjf $1     ;;
+            *.tar.gz)    tar xvzf $1     ;;
+            *.bz2)       bunzip2 $1      ;;
+            *.rar)       unrar x $1      ;;
+            *.gz)        gunzip $1       ;;
+            *.tar)       tar xvf $1      ;;
+            *.tbz2)      tar xvjf $1     ;;
+            *.tgz)       tar xvzf $1     ;;
+            *.zip)       unzip $1        ;;
+            *.Z)         uncompress $1   ;;
+            *.7z)        7z x $1         ;;
+            *)           echo "'$1' cannot be extracted via >extract<" ;;
+        esac
+    else
+        echo "'$1' is not a valid file!"
+    fi
+}
+
+# Creates an archive (*.tar.gz) from given directory.
+function maketar() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+
+# Create a ZIP archive of a file or folder.
+function makezip() { zip -r "${1%%/}.zip" "$1" ; }
+
+# Make your directories and files access rights sane.
+function sanitize() { chmod -R u=rwX,g=rX,o= "$@" ;}
+
+# Process/system related functions:
+
+function my_ps() { ps $@ -u $USER -o pid,%cpu,%mem,bsdtime,command ; }
+function pp() { my_ps f | awk '!/awk/ && $0~var' var=${1:-".*"} ; }
+
+function killps()   # kill by process name
+{
+    local pid pname sig="-TERM"   # default signal
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: killps [-SIGNAL] pattern"
+        return;
+    fi
+    if [ $# = 2 ]; then sig=$1 ; fi
+    for pid in $(my_ps| awk '!/awk/ && $0~pat { print $1 }' pat=${!#} )
+    do
+        pname=$(my_ps | awk '$1~var { print $5 }' var=$pid )
+        if ask "Kill process $pid <$pname> with signal $sig?"
+            then kill $sig $pid
+        fi
+    done
+}
+
+function mydf()         # Pretty-print of 'df' output.
+{                       # Inspired by 'dfc' utility.
+    for fs ; do
+
+        if [ ! -d $fs ]
+        then
+          echo -e $fs" :No such file or directory" ; continue
+        fi
+
+        local info=( $(command df -P $fs | awk 'END{ print $2,$3,$5 }') )
+        local free=( $(command df -Pkh $fs | awk 'END{ print $4 }') )
+        local nbstars=$(( 20 * ${info[1]} / ${info[0]} ))
+        local out="["
+        for ((j=0;j<20;j++)); do
+            if [ ${j} -lt ${nbstars} ]; then
+               out=$out"*"
+            else
+               out=$out"-"
+            fi
+        done
+        out=${info[2]}" "$out"] ("$free" free on "$fs")"
+        echo -e $out
+    done
+}
+
+function ii()   # Get current host related info.
+{
+    echo -e "\nYou are logged on ${BRed}$HOST"
+    echo -e "\n${BRed}Additionnal information:$NC " ; uname -a
+    echo -e "\n${BRed}Users logged on:$NC " ; w -hs |
+             cut -d " " -f1 | sort | uniq
+    echo -e "\n${BRed}Current date :$NC " ; date
+    echo -e "\n${BRed}Machine stats :$NC " ; uptime
+    echo -e "\n${BRed}Memory stats :$NC " ; free
+    echo -e "\n${BRed}Diskspace :$NC " ; mydf / $HOME
+    echo -e "\n${BRed}Local IP Address :$NC" ; ifconfig
+    echo -e "\n${BRed}Public IP Address :$NC" ; myip
+    echo -e "\n${BRed}Open connections :$NC "; netstat -pan --inet;
+    echo
+}
+
+#=========================================================================
+#
+#  PROGRAMMABLE COMPLETION SECTION
+#  Most are taken from the bash 2.05 documentation and from Ian McDonald's
+# 'Bash completion' package (http://www.caliban.org/bash/#completion)
+#  You will in fact need bash more recent then 3.0 for some features.
+#
+#  Note that most linux distributions now provide many completions
+# 'out of the box' - however, you might need to make your own one day,
+#  so I kept those here as examples.
+#=========================================================================
+
+if [ "${BASH_VERSION%.*}" \< "3.0" ]; then
+    echo "You will need to upgrade to version 3.0 for full \
+          programmable completion features"
+    return
+fi
+
+shopt -s extglob        # Necessary.
+
+complete -A hostname   rsh rcp telnet rlogin ftp ping disk
+complete -A export     printenv
+complete -A variable   export local readonly unset
+complete -A enabled    builtin
+complete -A alias      alias unalias
+complete -A function   function
+complete -A user       su mail finger
+
+complete -A helptopic  help     # Currently same as builtins.
+complete -A shopt      shopt
+complete -A stopped -P '%' bg
+complete -A job -P '%'     fg jobs disown
+
+complete -A directory  mkdir rmdir
+complete -A directory   -o default cd
+
+# Compression
+complete -f -o default -X '*.+(zip|ZIP)'  zip
+complete -f -o default -X '!*.+(zip|ZIP)' unzip
+complete -f -o default -X '*.+(z|Z)'      compress
+complete -f -o default -X '!*.+(z|Z)'     uncompress
+complete -f -o default -X '*.+(gz|GZ)'    gzip
+complete -f -o default -X '!*.+(gz|GZ)'   gunzip
+complete -f -o default -X '*.+(bz2|BZ2)'  bzip2
+complete -f -o default -X '!*.+(bz2|BZ2)' bunzip2
+complete -f -o default -X '!*.+(zip|ZIP|z|Z|gz|GZ|bz2|BZ2)' extract
+
+
+# Documents - Postscript,pdf,dvi.....
+complete -f -o default -X '!*.+(ps|PS)'  gs ghostview ps2pdf ps2ascii
+complete -f -o default -X \
+'!*.+(dvi|DVI)' dvips dvipdf xdvi dviselect dvitype
+complete -f -o default -X '!*.+(pdf|PDF)' acroread pdf2ps
+complete -f -o default -X '!*.@(@(?(e)ps|?(E)PS|pdf|PDF)?\
+(.gz|.GZ|.bz2|.BZ2|.Z))' gv ggv
+complete -f -o default -X '!*.texi*' makeinfo texi2dvi texi2html texi2pdf
+complete -f -o default -X '!*.tex' tex latex slitex
+complete -f -o default -X '!*.lyx' lyx
+complete -f -o default -X '!*.+(htm*|HTM*)' lynx html2ps
+complete -f -o default -X \
+'!*.+(doc|DOC|xls|XLS|ppt|PPT|sx?|SX?|csv|CSV|od?|OD?|ott|OTT)' soffice
+
+# Multimedia
+complete -f -o default -X \
+'!*.+(gif|GIF|jp*g|JP*G|bmp|BMP|xpm|XPM|png|PNG)' xv gimp ee gqview
+complete -f -o default -X '!*.+(mp3|MP3)' mpg123 mpg321
+complete -f -o default -X '!*.+(ogg|OGG)' ogg123
+complete -f -o default -X \
+'!*.@(mp[23]|MP[23]|ogg|OGG|wav|WAV|pls|\
+m3u|xm|mod|s[3t]m|it|mtm|ult|flac)' xmms
+complete -f -o default -X '!*.@(mp?(e)g|MP?(E)G|wma|avi|AVI|\
+asf|vob|VOB|bin|dat|vcd|ps|pes|fli|viv|rm|ram|yuv|mov|MOV|qt|\
+QT|wmv|mp3|MP3|ogg|OGG|ogm|OGM|mp4|MP4|wav|WAV|asx|ASX)' xine
+
+
+
+complete -f -o default -X '!*.pl'  perl perl5
+
+
+#  This is a 'universal' completion function - it works when commands have
+#+ a so-called 'long options' mode , ie: 'ls --all' instead of 'ls -a'
+#  Needs the '-o' option of grep
+#+ (try the commented-out version if not available).
+
+#  First, remove '=' from completion word separators
+#+ (this will allow completions like 'ls --color=auto' to work correctly).
+
+COMP_WORDBREAKS=${COMP_WORDBREAKS/=/}
+
+
+_get_longopts()
+{
+  #$1 --help | sed  -e '/--/!d' -e 's/.*--\([^[:space:].,]*\).*/--\1/'| \
+  #grep ^"$2" |sort -u ;
+    $1 --help | grep -o -e "--[^[:space:].,]*" | grep -e "$2" |sort -u
+}
+
+_longopts()
+{
+    local cur
+    cur=${COMP_WORDS[COMP_CWORD]}
+
+    case "${cur:-*}" in
+       -*)      ;;
+        *)      return ;;
+    esac
+
+    case "$1" in
+       \~*)     eval cmd="$1" ;;
+         *)     cmd="$1" ;;
+    esac
+    COMPREPLY=( $(_get_longopts ${1} ${cur} ) )
+}
+complete  -o default -F _longopts configure bash
+complete  -o default -F _longopts wget id info a2ps ls recode
+
+_tar()
+{
+    local cur ext regex tar untar
+
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+
+    # If we want an option, return the possible long options.
+    case "$cur" in
+        -*)     COMPREPLY=( $(_get_longopts $1 $cur ) ); return 0;;
+    esac
+
+    if [ $COMP_CWORD -eq 1 ]; then
+        COMPREPLY=( $( compgen -W 'c t x u r d A' -- $cur ) )
+        return 0
+    fi
+
+    case "${COMP_WORDS[1]}" in
+        ?(-)c*f)
+            COMPREPLY=( $( compgen -f $cur ) )
+            return 0
+            ;;
+        +([^Izjy])f)
+            ext='tar'
+            regex=$ext
+            ;;
+        *z*f)
+            ext='tar.gz'
+            regex='t\(ar\.\)\(gz\|Z\)'
+            ;;
+        *[Ijy]*f)
+            ext='t?(ar.)bz?(2)'
+            regex='t\(ar\.\)bz2\?'
+            ;;
+        *)
+            COMPREPLY=( $( compgen -f $cur ) )
+            return 0
+            ;;
+
+    esac
+
+    if [[ "$COMP_LINE" == tar*.$ext' '* ]]; then
+        # Complete on files in tar file.
+        #
+        # Get name of tar file from command line.
+        tar=$( echo "$COMP_LINE" | \
+                        sed -e 's|^.* \([^ ]*'$regex'\) .*$|\1|' )
+        # Devise how to untar and list it.
+        untar=t${COMP_WORDS[1]//[^Izjyf]/}
+
+        COMPREPLY=( $( compgen -W "$( echo $( tar $untar $tar \
+                                2>/dev/null ) )" -- "$cur" ) )
+        return 0
+
+    else
+        # File completion on relevant files.
+        COMPREPLY=( $( compgen -G $cur\*.$ext ) )
+
+    fi
+
+    return 0
+
+}
+
+complete -F _tar -o default tar
+
+_make()
+{
+    local mdef makef makef_dir="." makef_inc gcmd cur prev i;
+    COMPREPLY=();
+    cur=${COMP_WORDS[COMP_CWORD]};
+    prev=${COMP_WORDS[COMP_CWORD-1]};
+    case "$prev" in
+        -*f)
+            COMPREPLY=($(compgen -f $cur ));
+            return 0
+            ;;
+    esac;
+    case "$cur" in
+        -*)
+            COMPREPLY=($(_get_longopts $1 $cur ));
+            return 0
+            ;;
+    esac;
+
+    # ... make reads
+    #          GNUmakefile,
+    #     then makefile
+    #     then Makefile ...
+    if [ -f ${makef_dir}/GNUmakefile ]; then
+        makef=${makef_dir}/GNUmakefile
+    elif [ -f ${makef_dir}/makefile ]; then
+        makef=${makef_dir}/makefile
+    elif [ -f ${makef_dir}/Makefile ]; then
+        makef=${makef_dir}/Makefile
+    else
+       makef=${makef_dir}/*.mk         # Local convention.
+    fi
+
+
+    #  Before we scan for targets, see if a Makefile name was
+    #+ specified with -f.
+    for (( i=0; i < ${#COMP_WORDS[@]}; i++ )); do
+        if [[ ${COMP_WORDS[i]} == -f ]]; then
+            # eval for tilde expansion
+            eval makef=${COMP_WORDS[i+1]}
+            break
+        fi
+    done
+    [ ! -f $makef ] && return 0
+
+    # Deal with included Makefiles.
+    makef_inc=$( grep -E '^-?include' $makef |
+                 sed -e "s,^.* ,"$makef_dir"/," )
+    for file in $makef_inc; do
+        [ -f $file ] && makef="$makef $file"
+    done
+
+
+    #  If we have a partial word to complete, restrict completions
+    #+ to matches of that word.
+    if [ -n "$cur" ]; then gcmd='grep "^$cur"' ; else gcmd=cat ; fi
+
+    COMPREPLY=( $( awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ \
+                               {split($1,A,/ /);for(i in A)print A[i]}' \
+                                $makef 2>/dev/null | eval $gcmd  ))
+
+}
+
+complete -F _make -X '+($*|*.[cho])' make gmake pmake
+
+_killall()
+{
+    local cur prev
+    COMPREPLY=()
+    cur=${COMP_WORDS[COMP_CWORD]}
+
+    #  Get a list of processes
+    #+ (the first sed evaluation
+    #+ takes care of swapped out processes, the second
+    #+ takes care of getting the basename of the process).
+    COMPREPLY=( $( ps -u $USER -o comm  | \
+        sed -e '1,1d' -e 's#[]\[]##g' -e 's#^.*/##'| \
+        awk '{if ($0 ~ /^'$cur'/) print $0}' ))
+
+    return 0
+}
+
+complete -F _killall killall killps
+
+# Show current network information
+  netinfo ()
+  {
+    echo "--------------- Network Information ---------------"
+    /sbin/ifconfig | awk /'inet addr/ {print $2}'
+    echo ""
+    /sbin/ifconfig | awk /'Bcast/ {print $3}'
+    echo ""
+    /sbin/ifconfig | awk /'inet addr/ {print $4}'
+
+    /sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
+    echo "---------------------------------------------------"
+  }
