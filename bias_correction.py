@@ -9,15 +9,16 @@ def modified_quantile_correction(ref, ctr, data):
     p = cdf(data)
         
     cor = np.subtract(*np.nanquantile([ref, ctr], p))
-    mid = np.subtract(*np.nanquantile([ref, ctr], 50))
+    mid = np.subtract(*np.nanquantile([ref, ctr], 0.5))
     
-    iqr_ref = np.subtract(*np.nanquantile(ref, [75, 25]))
-    iqr_ctr = np.subtract(*np.nanquantile(ctr, [75, 25]))
+    iqr_ref = np.subtract(*np.nanquantile(ref, [0.75, 0.25]))
+    iqr_ctr = np.subtract(*np.nanquantile(ctr, [0.75, 0.25]))
     
-    g = np.true_divide(*np.nanquantile([ref, ctr], 50))
+    g = np.true_divide(*np.nanquantile([ref, ctr], 0.5))
     f = np.true_divide(iqr_ref, iqr_ctr)
     
     correction = g*mid + f*(cor - mid)
     return data + correction
     
+
 
