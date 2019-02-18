@@ -1,4 +1,8 @@
 from statsmodels.distributions.empirical_distribution import ECDF
+import numpy as np
+
+# data required reference to correct with respect to, control data for the overlapping period
+# modified quantile correction based on Bai et. al. (2016)
 def quantile_correction(ref, ctr, data, modified = True):
     cdf = ECDF(ctr)
     p = cdf(data)
